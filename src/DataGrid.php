@@ -1339,7 +1339,18 @@ class DataGrid extends Nette\Application\UI\Control
 		return $this->filters[$key] = new Filter\FilterDateRange($this, $key, $name, $column, $name_second);
 	}
 
+	public function addFilterDateSelect($key, $name, $column = null, array $options = [])
+	{
+		$column = $column ?: $key;
 
+		if (!is_string($column)) {
+			throw new DataGridException('FilterDateSelect can only filter in one column.');
+		}
+
+		$this->addFilterCheck($key);
+
+		return $this->filters[$key] = new Filter\FilterDateSelect($this, $key, $name, $column, $options);
+	}
 	/**
 	 * Check whether given key already exists in $this->filters
 	 * @param  string $key

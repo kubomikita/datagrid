@@ -131,4 +131,17 @@ abstract class FilterableColumn
 
 		return $this->grid->addFilterDateRange($this->key, $this->name, $column, $name_second);
 	}
+
+	/**
+	 * @param array $options
+	 * @param null $column
+	 *
+	 * @return Ublaboo\DataGrid\Filter\FilterDateSelect
+	 * @throws Ublaboo\DataGrid\Exception\DataGridException
+	 */
+	public function setFilterDateSelect(array $options, $column = null){
+		$column = $column === null ? $this->column : $column;
+
+		return $this->grid->addFilterDateSelect($this->key, $this->name, $column,$options);
+	}
 }
